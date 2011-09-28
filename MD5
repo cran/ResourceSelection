@@ -1,4 +1,4 @@
-903f04efcb7f42c9ab1bf5b6869b73fc *DESCRIPTION
+7c1c2196c0c3ff7df13c2759fa9dfe2f *DESCRIPTION
 92cf9b3223ae9ab436677a431b4763cb *NAMESPACE
 151f65bc1fc1233eee8e2c8d5511bf22 *R/confint.rsf.R
 464f991be63fbbcf8c9c70303b6091c3 *R/fitted.rsf.R
@@ -13,7 +13,7 @@ b49962646018d83104a3e75f299be5aa *R/makeUsedAvail.formula.R
 3637427839f9b218ef18575d8b7d9598 *R/model.frame.rsf.R
 3c5fa58ba5423e281789f321127fcdde *R/model.matrix.rsf.R
 6955924e644c58d124de475c5d5fb30d *R/plot.rsf.R
-2e0d1baf93dd709b71d774ce21fad283 *R/predict.rsf.R
+2dbfe9c5959f7ea8b6960a2fea6a9b9e *R/predict.rsf.R
 3ab577ef9e21c2d279f90b8eb23605e9 *R/print.rsf.R
 063174806a255a7140b28aac40af5f61 *R/print.summary.rsf.R
 93452fa5cdb71199c64340d894aea521 *R/rsf.R
@@ -21,9 +21,9 @@ b49962646018d83104a3e75f299be5aa *R/makeUsedAvail.formula.R
 74ea387e8b054ac043e1c2a5f17dd045 *R/rspf.R
 e285ca6eae6f915df366c1b3a69603b5 *R/summary.rsf.R
 2563c7268bb91e4d05c2b0d4597129b6 *R/vcov.rsf.R
-227e59d7a40f28de55e23dd37a08fe3d *R/zzz.R
+d602c5cf57f6760bdc48483ebd6c9960 *R/zzz.R
 f65bbf3f3a784599521675cf6134dbac *inst/COPYING
-772cb3ee875b3044306ce60936565805 *inst/ChangeLog
+80d6b9fd8ee0f99032948cc3aecd01b8 *inst/ChangeLog
 bcbf7c08e89b143bf25d3694648ecd02 *man/ResourceSelection-package.Rd
 3889cb3a07040608b1ea889240e02a39 *man/hoslem.test.Rd
 e50020346e1f1315e5380545c3d28eb5 *man/kdepairs.Rd
