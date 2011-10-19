@@ -1,4 +1,4 @@
-7c1c2196c0c3ff7df13c2759fa9dfe2f *DESCRIPTION
+3742dca029ecd2a7ea4e7baecfffdc9b *DESCRIPTION
 92cf9b3223ae9ab436677a431b4763cb *NAMESPACE
 151f65bc1fc1233eee8e2c8d5511bf22 *R/confint.rsf.R
 464f991be63fbbcf8c9c70303b6091c3 *R/fitted.rsf.R
@@ -23,7 +23,7 @@ e285ca6eae6f915df366c1b3a69603b5 *R/summary.rsf.R
 2563c7268bb91e4d05c2b0d4597129b6 *R/vcov.rsf.R
 d602c5cf57f6760bdc48483ebd6c9960 *R/zzz.R
 f65bbf3f3a784599521675cf6134dbac *inst/COPYING
-80d6b9fd8ee0f99032948cc3aecd01b8 *inst/ChangeLog
+d6afd180e58f825c28cb61be10d75dc7 *inst/ChangeLog
 bcbf7c08e89b143bf25d3694648ecd02 *man/ResourceSelection-package.Rd
 3889cb3a07040608b1ea889240e02a39 *man/hoslem.test.Rd
 e50020346e1f1315e5380545c3d28eb5 *man/kdepairs.Rd
