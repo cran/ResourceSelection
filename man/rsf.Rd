@@ -11,13 +11,13 @@ Resource Selection (Probability) Functions for Use-Availability Data
   Lele and Keim (2006) and Lele (2009).
 }
 \usage{
-rsf(formula, data, B = 99, inits, method = "Nelder-Mead", 
+rsf(formula, data, m, B = 99, inits, method = "Nelder-Mead", 
 control, model = TRUE, x = FALSE, ...)
 
-rspf(formula, data, B = 99, link = "logit", inits, 
+rspf(formula, data, m, B = 99, link = "logit", inits, 
 method = "Nelder-Mead", control, model = TRUE, x = FALSE, ...)
 
-rsf.fit(X, Y, link = "logit", B = 99, 
+rsf.fit(X, Y, m, link = "logit", B = 99, 
 inits, method = "Nelder-Mead", control, ...)
 }
 \arguments{
@@ -25,6 +25,19 @@ inits, method = "Nelder-Mead", control, ...)
 two sided model formula of the form \code{y ~ x}, 
 where \code{y} is a vector of observations,
 \code{x} is the set of covariates.
+}
+  \item{m}{
+argument describing the matching of use and available points.
+All available points are used for each use points if \code{m=0}
+(global availability). If \code{m} is a single value, e.g. \code{m=5},
+it is assumed that available data points are grouped in batches of 5,
+e.g. with IDs \code{c(1,2)} for used point locations and 
+\code{c(1, 1, 1, 1, 1, 2, 2, 2, 2, 2)} for available locations
+(local availability, matched use-available design).
+Similarly, a vector of matching IDs can also be provided, e.g.
+\code{c(1, 2, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2)} by combining the above two.
+This potentially could allow for unbalanced matching and for easier 
+subsetting of the data, but comes with an increased computing time.
 }
   \item{data}{
 data.
@@ -139,11 +152,11 @@ x <- data.frame(x1=rnorm(n), x2=runif(n))
 cfs <- c(1.5,-1,0.5)
 ## fitting Exponential RSF model
 dat1 <- fun(n.used, cfs, x, m=m, link="log")
-m1 <- rsf(status ~ .-status, dat1, B=0)
+m1 <- rsf(status ~ .-status, dat1, m=0, B=0)
 summary(m1)
 ## fitting Logistic RSPF model
 dat2 <- fun(n.used, cfs, x, m=m, link="logit")
-m2 <- rspf(status ~ .-status, dat2, B=0)
+m2 <- rspf(status ~ .-status, dat2, m=0, B=0)
 summary(m2)
 }
 \keyword{ htest }
