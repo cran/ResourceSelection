@@ -1,4 +1,4 @@
-1205a5dbc570ddea61aec8686074f10e *DESCRIPTION
+2e83d356b8ef7b807936c7d7f274ce9b *DESCRIPTION
 f2a79c43437f015f0a66ac7928507344 *NAMESPACE
 59457f1c87cd5ad21dfc85b871438f8f *R/CAIC.R
 cd441e687cd130cfb1065583f6bcea2e *R/CAIC.default.R
@@ -18,15 +18,15 @@ a0c7c2edf62e1691880d0a8b09cd5e96 *R/plot.rsf.R
 3fe0bddb4e28075852f8bc8fed8987cf *R/predict.rsf.R
 3f7f8a3a7459957e851710944000a683 *R/print.rsf.R
 aec60bd9263ff3002dc969e688b5b546 *R/print.summary.rsf.R
-731070b24edc65a6896f418ebb05d59a *R/rsf.R
+ff7499e5cfe89c011042c065ee354c94 *R/rsf.R
 4ef1d4284901f87918cd09adab48e72c *R/rsf.fit.R
-9354599043ffa66d20227f41ac4441ed *R/rspf.R
+367795f9206c10d8bc44eee82a2cc7ec *R/rspf.R
 7a6fb8aeaae60f8d57d548fb6137159b *R/simulateUseAvail.R
 95abe5cb38c5a37cb97a696bb076454b *R/summary.rsf.R
 691b3e62ddba8d706a04b1b0f883c698 *R/vcov.rsf.R
 d6b77665c04ad874047728bbfd667f05 *R/zzz.R
 2b45e01512c2d15ea74096950942eaaf *data/goats.rda
-7f7fc0980480a9d02e15cc136f2cd61c *inst/ChangeLog
+38459163f3ab3629c8979daa952a00c3 *inst/ChangeLog
 529e206b9a7841e65578eb726218b99c *man/CAIC.Rd
 578f36352c2467e6b806c6cd9b7c2b68 *man/ResourceSelection-package.Rd
 2d7851697b80a97cbc70a8459779bf8f *man/goats.Rd

@@ -1,5 +1,12 @@
 # ResourceSelection package version history
 
+## Version 0.2-6, Feb 15, 2016
+
+* Fixed critical error messages in rsf & rspf functions that
+  alert the user about the inclusion of continuous covariates.
+* log link was matched as logit in rspf call, now gives and error.
+* Imports pbapply (not suggests).
+
 ## Version 0.2-5, Nov 6, 2015
 
 * predict.rsf produced error with Exponential RSF
