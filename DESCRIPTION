@@ -2,8 +2,8 @@ Package: ResourceSelection
 Type: Package
 Title: Resource Selection (Probability) Functions for Use-Availability
         Data
-Version: 0.3-1
-Date: 2017-02-10
+Version: 0.3-2
+Date: 2017-02-28
 Author: Subhash R. Lele [aut], Jonah L. Keim [aut], Peter Solymos [aut, cre]
 Maintainer: Peter Solymos <solymos@ualberta.ca>
 Description: Resource Selection (Probability) Functions
@@ -20,6 +20,6 @@ License: GPL-2
 LazyLoad: yes
 LazyData: true
 NeedsCompilation: no
-Packaged: 2017-02-11 03:54:07 UTC; root
+Packaged: 2017-02-28 07:53:57 UTC; root
 Repository: CRAN
-Date/Publication: 2017-02-11 10:04:32
+Date/Publication: 2017-02-28 11:08:34
