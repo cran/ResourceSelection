@@ -29,16 +29,24 @@ kdepairs.default <- function(x, n=25, density=TRUE, contour=TRUE, ...) {
         points(x1,x2, col="lightgrey")
         lines(lowess(x1,x2), col="darkgreen", lty=1)
         COR <- cor(x1, x2)
-        text(mean(range(x1,na.rm=TRUE)), mean(range(x2,na.rm=TRUE)), 
+        text(mean(range(x1,na.rm=TRUE)), mean(range(x2,na.rm=TRUE)),
             round(COR, 3), cex=1+abs(COR))
     }
     panel.hist <- function(x, ...) {
-        usr <- par("usr"); on.exit(par(usr))
+        usr <- par("usr")
+        on.exit(par(usr))
         par(usr = c(usr[1:2], 0, 1.5) )
-        h <- hist(x, plot = FALSE)
-        breaks <- h$breaks; nB <- length(breaks)
-        y <- h$counts; y <- y/max(y)
-        rect(breaks[-nB], 0, breaks[-1], y, col="gold", ...)
+        h <- hist(x, plot=FALSE)
+        breaks <- h$breaks
+        nB <- length(breaks)
+        #y <- h$counts
+        y <- h$density
+        Max <- max(y)
+        y <- y/Max
+        rect(breaks[-nB], 0, breaks[-1], y, col="gold", border="orange", ...)
+        den <- density(x)
+        den$y <- den$y/Max
+        lines(den)
         box()
     }
     pairs.default(y, lower.panel=fun.lower, upper.panel=fun.upper, diag.panel=panel.hist)

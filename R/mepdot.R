@@ -3,14 +3,17 @@ function(x, y, level=0.95, link=NULL,
 type=c("numeric", "unique", "factor"),
 n=25, minbucket=5, digits=4, fmax=1, fmin=0.05,
 col.points, col.lines=c(4, 4),
-pch=19, lty=c(1, 2), lwd=c(2, 2), ...)
+pch=19, lty=c(1, 2), lwd=c(2, 2), plot=TRUE, ...)
 {
     type <- match.arg(type)
     a <- c((1-level)/2, 1-(1-level)/2)
     x <- if (type == "factor")
         as.factor(x) else as.numeric(x)
     if (missing(col.points))
-        col.points <- rgb(0.9, 0, 0.9, max(1-min(length(y), 100)/100, 0.05))
+        ## pink
+#        col.points <- rgb(0.9, 0, 0.9, max(1-min(length(y), 100)/100, 0.05))
+        ## turquoise
+        col.points <- rgb(0.25, 0.87, 0.81, max(1-min(length(y), 100)/100, 0.05))
     jitter_amount <- function (x, factor = 1, amount = NULL) {
         z <- diff(r <- range(x[is.finite(x)]))
         if (z == 0)
@@ -31,10 +34,13 @@ pch=19, lty=c(1, 2), lwd=c(2, 2), ...)
         amount
     }
     jfun <- function(tmp, minbucket=5, fmax=1, fmin=0) {
+        dd <- 0
         if (length(tmp) < minbucket) {
-            d <- dnorm(tmp, mean(tmp, na.rm=TRUE), sd(tmp, na.rm=TRUE))
-            d <- d + fmin * max(d)
-            dd <- amount * d / max(d)
+            if (length(tmp) > 1) {
+                d <- dnorm(tmp, mean(tmp, na.rm=TRUE), sd(tmp, na.rm=TRUE))
+                d <- d + fmin * max(d)
+                dd <- amount * d / max(d)
+            }
         } else {
             d <- density(tmp)
             d$y <- d$y + fmin * max(d$y)
@@ -69,13 +75,15 @@ pch=19, lty=c(1, 2), lwd=c(2, 2), ...)
         l1 <- lowess(xv, yq[,1])
         l2 <- lowess(xv, yq[,2])
         l3 <- lowess(xv, yq[,3])
-        plot(y ~ x, col=col.points, pch=pch, ...)
-        lines(l1$x, fam$linkinv(l1$y),
-             col=col.lines[1], lty=lty[1], lwd=lwd[1])
-        lines(l2$x, fam$linkinv(pmin(l1$y, l2$y)),
-             col=col.lines[2], lty=lty[2], lwd=lwd[2])
-        lines(l3$x, fam$linkinv(pmax(l1$y, l3$y)),
-             col=col.lines[2], lty=lty[2], lwd=lwd[2])
+        if (plot) {
+            plot(y ~ x, col=col.points, pch=pch, ...)
+            lines(l1$x, fam$linkinv(l1$y),
+                 col=col.lines[1], lty=lty[1], lwd=lwd[1])
+            lines(l2$x, fam$linkinv(pmin(l1$y, l2$y)),
+                 col=col.lines[2], lty=lty[2], lwd=lwd[2])
+            lines(l3$x, fam$linkinv(pmax(l1$y, l3$y)),
+                 col=col.lines[2], lty=lty[2], lwd=lwd[2])
+        }
     }
     if (type == "unique") {
         xp <- round(x, digits)
@@ -92,16 +100,18 @@ pch=19, lty=c(1, 2), lwd=c(2, 2), ...)
         for (i in xpi)
             o[xp == i] <- jfun(y[xp == i], minbucket, fmax, fmin)
         xpj <- xp + o
-        plot(y ~ xpj, axes=FALSE, col=col.points, pch=pch, ...)
-        box()
-        axis(1, xpi, xpi)
-        axis(2)
-        lines(l1$x, fam$linkinv(l1$y),
-             col=col.lines[1], lty=lty[1], lwd=lwd[1])
-        lines(l2$x, fam$linkinv(pmin(l1$y, l2$y)),
-             col=col.lines[2], lty=lty[2], lwd=lwd[2])
-        lines(l3$x, fam$linkinv(pmax(l1$y, l3$y)),
-             col=col.lines[2], lty=lty[2], lwd=lwd[2])
+        if (plot) {
+            plot(y ~ xpj, axes=FALSE, col=col.points, pch=pch, ...)
+            box()
+            axis(1, xpi, xpi)
+            axis(2)
+            lines(l1$x, fam$linkinv(l1$y),
+                 col=col.lines[1], lty=lty[1], lwd=lwd[1])
+            lines(l2$x, fam$linkinv(pmin(l1$y, l2$y)),
+                 col=col.lines[2], lty=lty[2], lwd=lwd[2])
+            lines(l3$x, fam$linkinv(pmax(l1$y, l3$y)),
+                 col=col.lines[2], lty=lty[2], lwd=lwd[2])
+        }
     }
     if (type == "factor") {
         xv <- levels(x)
@@ -115,27 +125,29 @@ pch=19, lty=c(1, 2), lwd=c(2, 2), ...)
         for (i in xpi)
             o[xp == i] <- jfun(y[xp == i], minbucket, fmax, fmin)
         xpj <- xp + o
-        plot(y ~ xpj, axes=FALSE, col=col.points, pch=pch, ...)
-        box()
-        axis(1, xpi, xv)
-        axis(2)
-        if (is.ordered(x)) {
-            lines(seq_len(n), fam$linkinv(yq)[,1],
-                col=col.lines[1], lty=lty[1], lwd=lwd[1])
-            lines(seq_len(n), fam$linkinv(yq)[,2],
-                col=col.lines[2], lty=lty[2], lwd=lwd[2])
-            lines(seq_len(n), fam$linkinv(yq)[,3],
-                col=col.lines[2], lty=lty[2], lwd=lwd[2])
-        } else {
-            lines(rep(seq_len(n), each=2) + rep(c(-0.5, 0.5), n),
-                rep(fam$linkinv(yq)[,1], each=2),
-                col=col.lines[1], lty=lty[1], lwd=lwd[1])
-            lines(rep(seq_len(n), each=2) + rep(c(-0.5, 0.5), n),
-                rep(fam$linkinv(yq)[,2], each=2),
-                col=col.lines[2], lty=lty[2], lwd=lwd[2])
-            lines(rep(seq_len(n), each=2) + rep(c(-0.5, 0.5), n),
-                rep(fam$linkinv(yq)[,3], each=2),
-                col=col.lines[2], lty=lty[2], lwd=lwd[2])
+        if (plot) {
+            plot(y ~ xpj, axes=FALSE, col=col.points, pch=pch, ...)
+            box()
+            axis(1, xpi, xv)
+            axis(2)
+            if (is.ordered(x)) {
+                lines(seq_len(n), fam$linkinv(yq)[,1],
+                    col=col.lines[1], lty=lty[1], lwd=lwd[1])
+                lines(seq_len(n), fam$linkinv(yq)[,2],
+                    col=col.lines[2], lty=lty[2], lwd=lwd[2])
+                lines(seq_len(n), fam$linkinv(yq)[,3],
+                    col=col.lines[2], lty=lty[2], lwd=lwd[2])
+            } else {
+                lines(rep(seq_len(n), each=2) + rep(c(-0.5, 0.5), n),
+                    rep(fam$linkinv(yq)[,1], each=2),
+                    col=col.lines[1], lty=lty[1], lwd=lwd[1])
+                lines(rep(seq_len(n), each=2) + rep(c(-0.5, 0.5), n),
+                    rep(fam$linkinv(yq)[,2], each=2),
+                    col=col.lines[2], lty=lty[2], lwd=lwd[2])
+                lines(rep(seq_len(n), each=2) + rep(c(-0.5, 0.5), n),
+                    rep(fam$linkinv(yq)[,3], each=2),
+                    col=col.lines[2], lty=lty[2], lwd=lwd[2])
+            }
         }
     }
     invisible(list(x=xv, y=yq, link=link))

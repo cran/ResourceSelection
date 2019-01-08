@@ -12,8 +12,8 @@ mep(object, ...)
 
 \method{mep}{default}(object, which=NULL, link=NULL,
     level=0.95, unique=10, n=25, minbucket=5, digits=4,
-    col.points, col.lines=c(4, 4), pch=19, lty=c(1, 2), lwd=c(2,2),
-    ask, subset=NULL, ...)
+    col.points, col.lines=c(2, 2), pch=19, lty=c(1, 2), lwd=c(2,2),
+    ask, subset=NULL, ylab, ...)
 }
 \arguments{
   \item{object}{
@@ -59,6 +59,9 @@ see \code{\link{par}(ask=.)}.
   \item{subset}{
 an optional vector specifying a subset of the data to be used for plotting.
 }
+  \item{ylab}{
+character or expression, optional y axis label.
+}
   \item{\dots}{
 other possible arguments passed to graphical functions.
 }
@@ -89,6 +92,12 @@ to indicate goodness of fit or the lack of it.
 The produces one or several marginal plots as a side effect.
 Returns a list of quantiles of fitted values
 corresponding to binned/unique values of variables in the input object.}
+\references{
+Avgar, T., Lele, S. R., Keim, J. L. & Boyce, M. S. (2017)
+Relative Selection Strength:
+Quantifying effect size in habitat- and step-selection inference.
+Ecology and Evolution 7, 5322--5330.
+}
 \author{
 Peter Solymos and Subhash Lele
 }

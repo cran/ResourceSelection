@@ -2,8 +2,9 @@ mep.default <-
 function(object, which=NULL, link=NULL,
 level=0.95, unique=10,
 n=25, minbucket=5, digits=4,
-col.points, col.lines=c(4, 4),
-pch=19, lty=c(1, 2), lwd=c(2,2), ask, subset=NULL, ...)
+col.points, col.lines=c(2, 2),
+pch=19, lty=c(1, 2), lwd=c(2,2), ask,
+subset=NULL, ylab, ...)
 {
     mf <- model.frame(object)
     fit <- fitted(object)
@@ -15,10 +16,12 @@ pch=19, lty=c(1, 2), lwd=c(2,2), ask, subset=NULL, ...)
     }
     link <- NULL
     fam <- try(family(object), silent=TRUE)
-    if (!inherits(fam, "try-error"))
+    if (inherits(fam, "family"))
         link <- fam$link
     Terms <- attr(mf, "terms")
     vars <- attr(Terms, "dataClasses")
+    allvars <- colnames(get_all_vars(Terms, mf))
+    vars <- vars[intersect(names(vars), allvars)]
     if (is.null(which))
         which <- names(vars)
     which <- if (is.character(which)) {
@@ -38,6 +41,8 @@ pch=19, lty=c(1, 2), lwd=c(2,2), ask, subset=NULL, ...)
         on.exit(devAskNewPage(oask))
     }
     out <- list()
+    if (missing(ylab))
+        ylab <- "fitted values"
     for (i in seq_len(np)) {
         type <- vars[i]
         nam <- names(vars)[i]
@@ -49,10 +54,10 @@ pch=19, lty=c(1, 2), lwd=c(2,2), ask, subset=NULL, ...)
         }
         out[[nam]] <- .mep(mf[,nam], fit,
             level=level, link=link, type=type,
-            xlab=nam, ylab="fitted values",
+            xlab=nam, ylab=ylab,
             n=n, minbucket=minbucket, digits=digits,
             col.points=col.points, col.lines=col.lines,
-            pch=pch, lty=lty, lwd=lwd, ...)
+            pch=pch, lty=lty, lwd=lwd, plot=TRUE, ...)
     }
     invisible(out)
 }
