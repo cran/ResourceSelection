@@ -1,4 +1,4 @@
-61e7429d7215b468685e3630a6eeb1e3 *DESCRIPTION
+fda4d61f9fd1a74a39054e57b9accb79 *DESCRIPTION
 c361aea0b623c18e31edc64b51d67d0e *NAMESPACE
 59457f1c87cd5ad21dfc85b871438f8f *R/CAIC.R
 cd441e687cd130cfb1065583f6bcea2e *R/CAIC.default.R
@@ -38,7 +38,7 @@ b3e7a8555d328190fcc35d6796a7c4b3 *R/rspf.R
 7fda54078a90776033954bb295b9c489 *R/zzz.R
 2b45e01512c2d15ea74096950942eaaf *data/goats.rda
 bf9e2c6efbbcb419e049e7733b8ddab3 *man/CAIC.Rd
-ece451b091d75bacfdb0c7a00f21324f *man/ResourceSelection-package.Rd
+5a6a77aa45140cc65af8494521592fca *man/ResourceSelection-package.Rd
 2d7851697b80a97cbc70a8459779bf8f *man/goats.Rd
 22a2f2fdb23c14dee6f6fa38cd99b310 *man/hoslem.test.Rd
 50802f68d703160d4abd805ba13a1ad4 *man/kdepairs.Rd
